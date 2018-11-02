@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SchedulingTasksWithPenalty": {
+      "commandName": "Project",
+      "commandLineArgs": "./Data/sch10.txt"
+    }
+  }
+}
