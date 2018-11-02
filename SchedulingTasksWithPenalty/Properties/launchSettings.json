@@ -2,7 +2,7 @@
   "profiles": {
     "SchedulingTasksWithPenalty": {
       "commandName": "Project",
-      "commandLineArgs": "./Data/sch10.txt"
+      "commandLineArgs": "./Data/sch10.txt 0.5"
     }
   }
 }

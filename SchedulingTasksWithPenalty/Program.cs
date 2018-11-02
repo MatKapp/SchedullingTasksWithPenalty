@@ -9,17 +9,18 @@ namespace SchedulingTasksWithPenalty
     {
         public static InstancesReader Reader { get; set; }
         public static InstanceScheduler Scheduler { get; set; }
-        public static InstancePenaltyCounter PenaltyCounter{ get; set; }
+        public static InstancePenaltyCounter PenaltyCounter { get; set; }
         public static decimal RelativeDeadline { get; set; }
+        public static string Sequence { get; set; }
         static void Main(string[] args)
         {
-            if (args == null)
+            if (args.Length < 2)
             {
-                throw new Exception("Args is null");
+                throw new Exception("To few parameters specified");
             }
             Reader = new InstancesReader(args[0]);
             Reader.ReadInstances();
-            RelativeDeadline = 0.5m;
+            RelativeDeadline = Convert.ToDecimal(args[1]);
 
             foreach (Instance instance in Reader.Instances)
             {
@@ -34,10 +35,21 @@ namespace SchedulingTasksWithPenalty
                 PenaltyCounter.Deadline = Convert.ToInt32(timeSummed * RelativeDeadline);
                 PenaltyCounter.CountPenalty();
                 Console.WriteLine($"Penalty after schedule: {PenaltyCounter.TotalPenalty}");
+                PrepareSequence();
+                Console.WriteLine($"Result Seqence: {Sequence}");
+                Console.WriteLine();
             }
 
-
             Console.WriteLine(Reader.Instances);
+        }
+
+        private static void PrepareSequence()
+        {
+            Sequence = "";
+            foreach (Task task in Scheduler.Result.Tasks)
+            {
+                Sequence += $"T{task.Id} ";
+            }
         }
     }
 }
