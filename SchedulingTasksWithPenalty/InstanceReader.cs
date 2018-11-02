@@ -16,9 +16,9 @@ namespace SchedulingTasksWithPenalty
         #endregion
 
         #region ctor
-        public InstancesReader(string filePath)
+        public InstancesReader(string _filePath)
         {
-            FilePath = filePath;
+            FilePath = _filePath;
             Instances = new List<Instance>();
         }
         #endregion

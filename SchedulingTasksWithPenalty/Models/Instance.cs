@@ -11,6 +11,17 @@ namespace SchedulingTasksWithPenalty.Models
         {
             Tasks = new List<Task>();
         }
+
+        public Instance(Instance _instance)
+        {
+            Size = _instance.Size;
+            Tasks = new List<Task>();
+
+            foreach (Task task in _instance.Tasks)
+            {
+                Tasks.Add(task);
+            }
+        }
         #endregion
 
         #region properties
